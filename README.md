@@ -16,6 +16,8 @@ pipenv install
 pipenv shell
 ```
 
+You also need several secrets from the official Twitter API. Just go to https://developer.twitter.com/en and create an account.
+
 # Start the console
 
 ```
