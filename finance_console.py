@@ -3,13 +3,13 @@ import pandas as pd
 import numpy as np
 import requests
 import tweepy
-import config
 import matplotlib.pyplot as plt
 from matplotlib import dates, style
 import plotly.graph_objects as go
 import datetime
 import yfinance as yf
 from decouple import config
+import twitter_user
 
 
 auth = tweepy.OAuthHandler(config('TWITTER_CONSUMER_KEY'), config('TWITTER_CONSUMER_SECRET'))
@@ -95,7 +95,7 @@ if option == 'stocktwits':
         st.write(message['body'])
 
 if option == 'Twitter':
-    for username in config.TWITTER_USERNAMES:
+    for username in twitter_user.TWITTER_USERNAMES:
         user = api.get_user(username)
 
         tweets = api.user_timeline(username)
