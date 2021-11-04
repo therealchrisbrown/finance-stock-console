@@ -16,7 +16,11 @@ pipenv install
 pipenv shell
 ```
 
+## API KEYS
+
 You also need several secrets from the official Twitter API. Just go to https://developer.twitter.com/en and create an account.
+
+For Alphavantage: to get historical stock data you'll need an api key from alphavantage - it is free. Just go to https://www.alphavantage.co/ and create an account. You will get your free API Key immediately.
 
 # Start the console
 
