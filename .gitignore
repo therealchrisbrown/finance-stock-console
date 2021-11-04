@@ -1,0 +1,9 @@
+
+#Project Files
+.env
+
+
+### macOS ###
+*.DS_Store
+.AppleDouble
+.LSOverride
