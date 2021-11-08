@@ -52,7 +52,20 @@ if option == 'Company Overview':
     st.markdown('#')
 
     with st.beta_expander("Finanzüberblick"):
-        st.write(info)
+        left_column2, right_column2 = st.beta_columns(2)
+        ratio_ebitdamarge_name = left_column2.write("EBITDA Marge (%)")
+        ratio_ebitdamarge = right_column2.write(format(info['ebitdaMargins'],'.2%'))
+        ratio_cashpershare_name = left_column2.write("Cash per share (%)")
+        ratio_cashpershare =right_column2.write(format(info['totalCashPerShare'],'.2%'))
+        ratio_quickratio_name = left_column2.write("Quick Ratio (%)")
+        ratio_quickratio = right_column2.write(format(info['quickRatio'],'.2%'))
+        ratio_currentratio_name = left_column2.write("Current Ratio (%)")
+        ratio_currentratio = right_column2.write(format(info['currentRatio'],'.2%'))
+        ratio_sharesoutstanding_name = left_column2.write("Streubesitz / SharesOut (%)")
+        ratio_sharesoutstanding = right_column2.write(format(info['sharesPercentSharesOut'], '.2%'))
+        ratio_shortfloat_name = left_column2.write("Short Interest Sentiment (%)")
+        ratio_shortfloat = right_column2.write(format(info['shortPercentOfFloat'],'.2%'))
+        #st.write(info)
     
     st.markdown('#')
 
@@ -60,9 +73,9 @@ if option == 'Company Overview':
     params_adjclose= {'function': 'TIME_SERIES_DAILY_ADJUSTED', 'symbol': ticker, 'outputsize': 'full', 'apikey': config('AV_APIKEY')}
     params_val = {'function': 'INCOME_STATEMENT', 'symbol': ticker, 'outputsize': 'full', 'apikey': config('AV_APIKEY')}
     
-    left_column2, right_column2 = st.beta_columns(2)
-    startdate = left_column2.date_input("Von:", datetime.date(2018,1,1))
-    enddate = right_column2.date_input("Bis:")
+    left_column3, right_column3 = st.beta_columns(2)
+    startdate = left_column3.date_input("Von:", datetime.date(2018,1,1))
+    enddate = right_column3.date_input("Bis:")
     pressed = st.button("Go!")
     
     if pressed:
