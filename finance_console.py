@@ -22,7 +22,7 @@ st.sidebar.title("Console")
 st.sidebar.text("Investing")
 
 
-option = st.sidebar.selectbox("Welches Dashboard?", ('Company Overview', 'Strategies', 'stocktwits','Twitter', 'wallstreetbets'))
+option = st.sidebar.selectbox("Welches Dashboard?", ('Company Overview','Stocktwits', 'Strategies', 'Twitter', 'wallstreetbets'))
 st.title(option)
 
 
@@ -36,11 +36,25 @@ if option == 'Company Overview':
     sector_company = left_column1.markdown(info['sector'])
     industry_company = left_column1.markdown(info['industry'])
     company_logo = right_column1.image(info['logo_url'])
+    company_country = left_column1.write(info['country'])
+    company_website = left_column1.write(info['website'])
+
+    st.markdown('#')
 
     with st.beta_expander("Was macht das Unternehmen?"):
         st.write(info['longBusinessSummary'])
     
-    #st.write(info)
+    st.markdown('#')
+
+    with st.beta_expander("Latest News"):
+        st.write("Test")
+
+    st.markdown('#')
+
+    with st.beta_expander("Finanzüberblick"):
+        st.write(info)
+    
+    st.markdown('#')
 
     url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol="+ticker+"&outputsize=full&apikey="
     params_adjclose= {'function': 'TIME_SERIES_DAILY_ADJUSTED', 'symbol': ticker, 'outputsize': 'full', 'apikey': config('AV_APIKEY')}
@@ -77,11 +91,8 @@ if option == 'Company Overview':
 
     # st.write(df_val)
 
-if option == 'Strategies':
-    st.subheader('Markowitz')
 
-
-if option == 'stocktwits':
+if option == 'Stocktwits':
     ticker = st.sidebar.text_input("Ticker", value='', max_chars=10)
 
     
@@ -93,6 +104,9 @@ if option == 'stocktwits':
         st.write(message['user']['username'])
         st.write(message['created_at'])
         st.write(message['body'])
+
+if option == 'Strategies':
+    st.subheader('Markowitz')
 
 if option == 'Twitter':
     for username in twitter_user.TWITTER_USERNAMES:
